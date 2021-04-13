@@ -29,6 +29,6 @@ $bordercolor: #f0f0f0;
         flex-direction: row;
     }
     .actions button {
-        margin-right: 1em;
+        display: none; // does not work
     }
 }
