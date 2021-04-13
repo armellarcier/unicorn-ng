@@ -1,0 +1,20 @@
+<ng-container *ngIf="unicornWithAge">
+    <!-- FIXME: use a Pipe to cast to string ? -->
+    <app-card [title]="unicornWithAge.name" [subtitle]="unicornWithAge.id.toString()">
+        Poids&nbsp;: {{ unicornWithAge.weight }}
+        <br />
+        Age&nbsp;: {{ unicornWithAge.age < 60 ? unicornWithAge.age : 'vieux' }}
+        <ng-container *ngIf="unicornWithAge.hobbies?.length">
+            <br />
+            Hobbies&nbsp;: {{ unicornWithAge.hobbies?.join(', ') }}
+        </ng-container>
+        <ng-container *ngIf="unicornWithAge.capacities?.length">
+            <br />
+            Capacités&nbsp;: {{ unicornWithAge.capacities?.join(', ') }}
+        </ng-container>
+        <ng-container cardActions>
+            <button type="button" (click)="sayHello()">Say hello</button>
+            <button type="button" (click)="remove()">Supprimer</button>
+        </ng-container>
+    </app-card>
+</ng-container>

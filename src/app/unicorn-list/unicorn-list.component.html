@@ -1,0 +1,12 @@
+<div class="list">
+    <p>
+        Bonne nouvelle, il reste {{ count }}
+        <ng-container {{ count }} *ngIf="count > 1; else singularBlock">licornes</ng-container> à adopter
+        <ng-template #singularBlock>licorne</ng-template>
+    </p>
+    <ul>
+        <li *ngFor="let unicorn of unicorns">
+            <app-unicorn-card [unicorn]="unicorn" (removed)="removeUnicorn(unicorn)"></app-unicorn-card>
+        </li>
+    </ul>
+</div>
