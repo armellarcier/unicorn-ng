@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'unicorn-ng';
-    _count = 0;
-    get count() {
-        return ++this._count;
-    }
 }
