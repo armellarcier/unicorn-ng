@@ -29,7 +29,12 @@
             <button mat-mini-fab color="primary" aria-label="edit" (click)="sayHello()">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-mini-fab color="primary" aria-label="favorite" (click)="sayHello()">
+            <button
+                mat-mini-fab
+                [color]="(isFavorite$ | async) ? 'accent' : 'primary'"
+                aria-label="favorite"
+                (click)="toggleFavorite()"
+            >
                 <mat-icon>favorite</mat-icon>
             </button>
             <button mat-mini-fab color="primary" aria-label="show" (click)="sayHello()">
