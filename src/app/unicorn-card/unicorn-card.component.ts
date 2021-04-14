@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Unicorn } from './../shared/models/unicorn.model';
+import { UnicornWithCapacitiesLabels } from './../shared/services/unicorns.service';
 
 export interface UnicornWithAge extends Unicorn {
     age: number;
@@ -11,7 +12,7 @@ export interface UnicornWithAge extends Unicorn {
     styleUrls: ['./unicorn-card.component.scss'],
 })
 export class UnicornCardComponent implements OnInit {
-    @Input() public unicorn: Unicorn | undefined;
+    @Input() public unicorn: UnicornWithCapacitiesLabels | undefined;
     @Output() private removed = new EventEmitter<void>();
     public unicornWithAge: UnicornWithAge | undefined;
     private currentYear: number = new Date().getFullYear();

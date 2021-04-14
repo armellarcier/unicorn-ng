@@ -1,26 +1,24 @@
-<ng-container *ngIf="unicornWithAge">
+<ng-container *ngIf="unicorn">
     <!-- FIXME: use a Pipe to cast to string ? -->
     <mat-card>
         <mat-card-header>
-            <img mat-card-avatar [src]="unicornWithAge.photo" />
-            <mat-card-title>{{ unicornWithAge.name }}</mat-card-title>
-            <mat-card-subtitle>ID&nbsp;: {{ unicornWithAge.id }}</mat-card-subtitle>
+            <img mat-card-avatar [src]="unicorn.photo" />
+            <mat-card-title>{{ unicorn.name }}</mat-card-title>
+            <mat-card-subtitle>ID&nbsp;: {{ unicorn.id }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="unicornWithAge.photo" [alt]="unicornWithAge.name" />
+        <img mat-card-image [src]="unicorn.photo" [alt]="unicorn.name" />
         <mat-card-content>
-            <div class="row"><mat-icon>fitness_center</mat-icon>&nbsp;Poids&nbsp;: {{ unicornWithAge.weight }}</div>
+            <div class="row"><mat-icon>fitness_center</mat-icon>&nbsp;Poids&nbsp;: {{ unicorn.weight }}</div>
             <div class="row">
                 <mat-icon>elderly</mat-icon>&nbsp;Age&nbsp;:
-                {{ unicornWithAge.birthyear | ageFromBirthYear }}
+                {{ unicorn.birthyear | ageFromBirthYear }}
             </div>
-            <ng-container *ngIf="unicornWithAge.hobbies?.length">
-                <div class="row">
-                    <mat-icon>pool</mat-icon>&nbsp;Hobbies&nbsp;: {{ unicornWithAge.hobbies?.join(', ') }}
-                </div>
+            <ng-container *ngIf="unicorn.hobbies?.length">
+                <div class="row"><mat-icon>pool</mat-icon>&nbsp;Hobbies&nbsp;: {{ unicorn.hobbies?.join(', ') }}</div>
             </ng-container>
-            <ng-container *ngIf="unicornWithAge.capacities?.length">
+            <ng-container *ngIf="unicorn.capacities?.length">
                 <div class="row">
-                    <mat-icon>bolt</mat-icon>&nbsp;Capacités&nbsp;: {{ unicornWithAge.capacities?.join(', ') }}
+                    <mat-icon>bolt</mat-icon>&nbsp;Capacités&nbsp;: {{ unicorn.capacitiesLabels?.join(', ') }}
                 </div>
             </ng-container>
         </mat-card-content>
@@ -39,7 +37,7 @@
             </button>
         </mat-card-actions>
     </mat-card>
-    <!-- <app-card [title]="unicornWithAge.name" [subtitle]="unicornWithAge.id.toString()">
+    <!-- <app-card [title]="unicorn.name" [subtitle]="unicornWithAge.id.toString()">
         <div class="row"><mat-icon>fitness_center</mat-icon>&nbsp;Poids&nbsp;: {{ unicornWithAge.weight }}</div>
         <div class="row">
             <mat-icon>elderly</mat-icon>&nbsp;Age&nbsp;:
