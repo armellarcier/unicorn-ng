@@ -9,7 +9,9 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "prettier:check": "prettier --check \"**\"",
-        "prettier": "prettier --write \"**\""
+        "prettier": "prettier --write \"**\"",
+        "wba": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/unicorn-ng/stats.json",
+        "sme": "ng build --prod --source-map && source-map-explorer ./dist/unicorn-ng/*.js"
     },
     "private": true,
     "dependencies": {
@@ -60,8 +62,10 @@
         "prettier-plugin-organize-imports": "^1.1.1",
         "pretty-quick": "^3.1.0",
         "protractor": "~7.0.0",
+        "source-map-explorer": "^2.5.2",
         "ts-node": "~8.3.0",
-        "typescript": "~4.1.5"
+        "typescript": "~4.1.5",
+        "webpack-bundle-analyzer": "^4.4.1"
     },
     "husky": {
         "hooks": {

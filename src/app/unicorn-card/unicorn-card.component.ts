@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Unicorn } from './../shared/models/unicorn.model';
 import { CartService } from './../shared/services/cart.service';
@@ -12,6 +12,7 @@ export interface UnicornWithAge extends Unicorn {
     selector: 'app-unicorn-card',
     templateUrl: './unicorn-card.component.html',
     styleUrls: ['./unicorn-card.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class UnicornCardComponent implements OnInit {
     @Input() public unicorn: UnicornWithCapacitiesLabels | undefined;

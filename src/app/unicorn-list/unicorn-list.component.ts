@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Unicorn } from '../shared/models/unicorn.model';
+import { Unicorn } from './../shared/models/unicorn.model';
 import { UnicornsService, UnicornWithCapacitiesLabels } from './../shared/services/unicorns.service';
 
 @Component({
@@ -18,5 +18,8 @@ export class UnicornListComponent {
     }
     public removeUnicorn(unicornToRemove: Unicorn) {
         this.unicorns = this.unicorns.filter(({ id }) => id !== unicornToRemove.id);
+    }
+    public trackByUnicorn(u: Unicorn) {
+        return u.id;
     }
 }
