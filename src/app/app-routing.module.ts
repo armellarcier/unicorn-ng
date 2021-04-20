@@ -23,6 +23,10 @@ const routes: Routes = [
         component: ManageUnicornComponent,
         canActivate: [UnicornGuard],
     },
+    {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(({ AdminModule }) => AdminModule),
+    },
 ];
 
 @NgModule({
