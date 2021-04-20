@@ -1,35 +1,37 @@
-<form (ngSubmit)="(save)" [formGroup]="form">
-    <p>
-        <mat-form-field appearance="standard">
-            <mat-label>Nom</mat-label>
-            <input matInput required placeholder="Nom de la licorne" formControlName="name" />
-            <mat-icon matSuffix>badge</mat-icon>
-            <mat-error *ngIf="form.controls.name.hasError">C'est pas pour le KGB, paye ton blaze!</mat-error>
-            <mat-hint>Un nom sympa, c plus sympa</mat-hint>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="standard">
-            <mat-label>Année de naissance</mat-label>
-            <input
-                matInput
-                min="1900"
-                type="number"
-                required
-                placeholder="Année de naissance de la licorne"
-                formControlName="birthyear"
-            />
-            <mat-icon matSuffix>elderly</mat-icon>
-            <mat-error *ngIf="form.controls.birthyear.hasError('required')">
-                J'en ai besoin, aies confiance.
-            </mat-error>
-            <mat-error *ngIf="form.controls.birthyear.hasError && !form.controls.birthyear.hasError('required')">
-                Sors ta carte d'identité
-            </mat-error>
-            <mat-hint>Honnêtement, stp</mat-hint>
-        </mat-form-field>
-    </p>
-    <p>
-        <button mat-raised-button [disabled]="form.invalid" color="primary" type="submit">Enregistrer</button>
-    </p>
-</form>
+<ng-container *ngIf="form">
+    <form (ngSubmit)="(save)" [formGroup]="form">
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Nom</mat-label>
+                <input matInput required placeholder="Nom de la licorne" formControlName="name" />
+                <mat-icon matSuffix>badge</mat-icon>
+                <mat-error *ngIf="form.controls.name.hasError">C'est pas pour le KGB, paye ton blaze!</mat-error>
+                <mat-hint>Un nom sympa, c plus sympa</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label>Année de naissance</mat-label>
+                <input
+                    matInput
+                    min="1900"
+                    type="number"
+                    required
+                    placeholder="Année de naissance de la licorne"
+                    formControlName="birthyear"
+                />
+                <mat-icon matSuffix>elderly</mat-icon>
+                <mat-error *ngIf="form.controls.birthyear.hasError('required')">
+                    J'en ai besoin, aies confiance.
+                </mat-error>
+                <mat-error *ngIf="form.controls.birthyear.hasError && !form.controls.birthyear.hasError('required')">
+                    Sors ta carte d'identité
+                </mat-error>
+                <mat-hint>Honnêtement, stp</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <button mat-raised-button [disabled]="form.invalid" color="primary" type="submit">Enregistrer</button>
+        </p>
+    </form>
+</ng-container>

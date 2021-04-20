@@ -9,9 +9,21 @@
     >
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item href="#">Link 1</a>
-            <a mat-list-item href="#">Link 2</a>
-            <a mat-list-item href="#">Link 3</a>
+            <a
+                mat-list-item
+                mat-list
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Licornes</a
+            >
+            <a
+                mat-list-item
+                routerLink="/unicorns/new"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Créer</a
+            >
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

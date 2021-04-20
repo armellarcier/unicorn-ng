@@ -26,9 +26,9 @@
             <button mat-mini-fab color="warn" aria-label="remove" (click)="remove()">
                 <mat-icon>delete</mat-icon>
             </button>
-            <button mat-icon-button color="primary" aria-label="edit" (click)="sayHello()">
+            <a mat-icon-button color="primary" aria-label="edit" [routerLink]="['/unicorns', unicorn.id, 'edit']">
                 <mat-icon>edit</mat-icon>
-            </button>
+            </a>
             <button
                 mat-icon-button
                 [color]="(isFavorite$ | async) ? 'accent' : null"
@@ -37,9 +37,9 @@
             >
                 <mat-icon>favorite</mat-icon>
             </button>
-            <button mat-icon-button aria-label="show" (click)="sayHello()">
+            <a mat-icon-button aria-label="show" [routerLink]="['/unicorns', unicorn.id]" (click)="sayHello()">
                 <mat-icon>visibility</mat-icon>
-            </button>
+            </a>
         </mat-card-actions>
     </mat-card>
     <!-- <app-card [title]="unicorn.name" [subtitle]="unicornWithAge.id.toString()">

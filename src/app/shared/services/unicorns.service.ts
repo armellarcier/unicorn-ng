@@ -24,6 +24,9 @@ export class UnicornsService {
     public getAll(): Observable<Unicorn[]> {
         return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`).pipe(catchError(err => of([])));
     }
+    public getById(id: any) {
+        return this.http.get<Unicorn>(`${environment.apiUrl}/unicorns/${id}`).pipe(catchError(err => of(null)));
+    }
 
     public getAllWithCapacitiesLabels0(): Observable<UnicornWithCapacitiesLabels[]> {
         return this.getAll().pipe(
