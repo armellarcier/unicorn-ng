@@ -26,18 +26,18 @@
             <button mat-mini-fab color="warn" aria-label="remove" (click)="remove()">
                 <mat-icon>delete</mat-icon>
             </button>
-            <button mat-mini-fab color="primary" aria-label="edit" (click)="sayHello()">
+            <button mat-icon-button color="primary" aria-label="edit" (click)="sayHello()">
                 <mat-icon>edit</mat-icon>
             </button>
             <button
-                mat-mini-fab
-                [color]="(isFavorite$ | async) ? 'accent' : 'primary'"
+                mat-icon-button
+                [color]="(isFavorite$ | async) ? 'accent' : null"
                 aria-label="favorite"
                 (click)="toggleFavorite()"
             >
                 <mat-icon>favorite</mat-icon>
             </button>
-            <button mat-mini-fab color="primary" aria-label="show" (click)="sayHello()">
+            <button mat-icon-button aria-label="show" (click)="sayHello()">
                 <mat-icon>visibility</mat-icon>
             </button>
         </mat-card-actions>

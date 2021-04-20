@@ -5,9 +5,8 @@
     vertical-align: text-bottom;
     margin-right: 0.5rem;
 }
-mat-card-actions {
+mat-card-actions.mat-card-actions.mat-card-actions {
     display: flex;
     justify-content: space-between;
-}
-mat-card-actions button {
+    padding: 10px;
 }
