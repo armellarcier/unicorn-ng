@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Unicorn } from './../shared/models/unicorn.model';
 import { CartService } from './../shared/services/cart.service';
-import { UnicornWithCapacitiesLabels } from './../shared/services/unicorns.service';
+import { UnicornsDispatchers } from './../store/dispatchers/unicorns.dispatchers';
 
 export interface UnicornWithAge extends Unicorn {
     age: number;
@@ -15,12 +15,11 @@ export interface UnicornWithAge extends Unicorn {
     changeDetection: ChangeDetectionStrategy.Default,
 })
 export class UnicornCardComponent implements OnInit {
-    @Input() public unicorn: UnicornWithCapacitiesLabels | undefined;
-    @Output() private removed = new EventEmitter<void>();
+    @Input() public unicorn: Unicorn | undefined;
     public unicornWithAge: UnicornWithAge | undefined;
     private currentYear: number = new Date().getFullYear();
     public isFavorite$: Observable<boolean> = of(false);
-    constructor(private cartService: CartService) {}
+    constructor(private cartService: CartService, private unicornsDispatchers: UnicornsDispatchers) {}
 
     ngOnInit(): void {
         if (this.unicorn && this.unicorn) {
@@ -45,6 +44,6 @@ export class UnicornCardComponent implements OnInit {
     }
 
     public remove() {
-        this.removed.emit();
+        this.unicorn && this.unicornsDispatchers.deleteUnicorn(this.unicorn);
     }
 }

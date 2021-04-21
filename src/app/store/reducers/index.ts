@@ -1,9 +1,9 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { UnicornWithCapacitiesLabels } from './../../shared/services/unicorns.service';
+import { Unicorn } from './../../shared/models/unicorn.model';
 import { unicornsReducer } from './unicorns.reducer';
 
 export interface EntityState {
-    unicorns: UnicornWithCapacitiesLabels[];
+    unicorns: Unicorn[];
 }
 
 export const reducers: ActionReducerMap<EntityState> = {

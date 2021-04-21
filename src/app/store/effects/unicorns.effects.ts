@@ -9,11 +9,22 @@ import * as UnicornsActions from '../actions/unicorns.action';
 export class UnicornsEffects {
     constructor(private actions$: Actions, private unicornsService: UnicornsService) {}
 
+    getUnicorn$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UnicornsActions.getUnicorn),
+            switchMap(action =>
+                this.unicornsService.getById(action.id).pipe(
+                    map(unicorn => UnicornsActions.getUnicornSuccess({ unicorn })),
+                    catchError(() => of(UnicornsActions.getUnicornError())),
+                ),
+            ),
+        ),
+    );
     getUnicorns$ = createEffect(() =>
         this.actions$.pipe(
             ofType(UnicornsActions.getUnicorns),
             switchMap(() =>
-                this.unicornsService.getAllWithCapacitiesLabels().pipe(
+                this.unicornsService.getAll().pipe(
                     map(unicorns => UnicornsActions.getUnicornsSuccess({ unicorns })),
                     catchError(() => of(UnicornsActions.getUnicornsError())),
                 ),
@@ -27,6 +38,17 @@ export class UnicornsEffects {
                 this.unicornsService.delete(action.unicorn.id).pipe(
                     map(() => UnicornsActions.deleteUnicornSuccess({ unicorn: action.unicorn })),
                     catchError(() => of(UnicornsActions.deleteUnicornError())),
+                ),
+            ),
+        ),
+    );
+    updateUnicorn$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UnicornsActions.updateUnicorn),
+            switchMap(action =>
+                this.unicornsService.update(action.unicorn.id, action.unicorn).pipe(
+                    map(() => UnicornsActions.updateUnicornSuccess({ unicorn: action.unicorn })),
+                    catchError(() => of(UnicornsActions.updateUnicornError())),
                 ),
             ),
         ),

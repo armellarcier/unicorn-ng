@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
 import { EntityState } from '../reducers';
-import { UnicornWithCapacitiesLabels } from './../../shared/services/unicorns.service';
+import { Unicorn } from './../../shared/models/unicorn.model';
 
 // selectors
-const getUnicorns = createFeatureSelector<UnicornWithCapacitiesLabels[]>('unicorns');
-const getUnicorn = createSelector(getUnicorns, (state: UnicornWithCapacitiesLabels[], prop: { id: number }) => {
+const getUnicorns = createFeatureSelector<Unicorn[]>('unicorns');
+const getUnicorn = createSelector(getUnicorns, (state: Unicorn[], prop: { id: number }) => {
     return state.find(u => u.id === prop.id);
 });
 

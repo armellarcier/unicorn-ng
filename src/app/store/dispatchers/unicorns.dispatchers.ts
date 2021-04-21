@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { deleteUnicorn, getUnicorns, updateUnicorn } from '../actions/unicorns.action';
 import { EntityState } from '../reducers';
 import { Unicorn } from './../../shared/models/unicorn.model';
+import { getUnicorn } from './../actions/unicorns.action';
 
 @Injectable({ providedIn: 'root' })
 export class UnicornsDispatchers {
@@ -10,6 +11,9 @@ export class UnicornsDispatchers {
 
     public getUnicorns(): void {
         this.store.dispatch(getUnicorns());
+    }
+    public getUnicorn(id: number): any {
+        this.store.dispatch(getUnicorn({ id }));
     }
 
     public deleteUnicorn(unicorn: Unicorn): void {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, from, Observable, of } from 'rxjs';
-import { catchError, concatAll, map, mergeMap, reduce, share, tap, toArray } from 'rxjs/operators';
+import { forkJoin, from, Observable } from 'rxjs';
+import { concatAll, map, mergeMap, reduce, share, tap, toArray } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Unicorn } from '../models/unicorn.model';
 import { CapacitiesService } from './capacities.service';
@@ -22,10 +22,10 @@ export class UnicornsService {
     constructor(private http: HttpClient, private capacitiesService: CapacitiesService) {}
 
     public getAll(): Observable<Unicorn[]> {
-        return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`).pipe(catchError(err => of([])));
+        return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`);
     }
-    public getById(id: any) {
-        return this.http.get<Unicorn>(`${environment.apiUrl}/unicorns/${id}`).pipe(catchError(err => of(null)));
+    public getById(id: any): Observable<Unicorn> {
+        return this.http.get<Unicorn>(`${environment.apiUrl}/unicorns/${id}`);
     }
 
     public getAllWithCapacitiesLabels0(): Observable<UnicornWithCapacitiesLabels[]> {
@@ -59,8 +59,11 @@ export class UnicornsService {
         );
     }
 
-    public delete(id: number) {
-        return this.http.delete<Unicorn>(`${environment.apiUrl}/unicorns/${id}`).pipe(catchError(err => of(null)));
+    public delete(id: number): Observable<void> {
+        return this.http.delete<void>(`${environment.apiUrl}/unicorns/${id}`);
+    }
+    public update(id: number, unicorn: Unicorn): Observable<Unicorn> {
+        return this.http.put<Unicorn>(`${environment.apiUrl}/unicorns/${id}`, unicorn);
     }
 
     public getAllWithCapacitiesLabels(): Observable<UnicornWithCapacitiesLabels[]> {
