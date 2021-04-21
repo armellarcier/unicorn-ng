@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { Observable, of } from 'rxjs';
 import { Unicorn } from './../shared/models/unicorn.model';
 import { CartService } from './../shared/services/cart.service';
+import { CartDispatchers } from './../store/dispatchers/cart.dispatcher';
 import { UnicornsDispatchers } from './../store/dispatchers/unicorns.dispatchers';
+import { CartSelectors } from './../store/selectors/cart.selectors';
 
 export interface UnicornWithAge extends Unicorn {
     age: number;
@@ -19,12 +21,17 @@ export class UnicornCardComponent implements OnInit {
     public unicornWithAge: UnicornWithAge | undefined;
     private currentYear: number = new Date().getFullYear();
     public isFavorite$: Observable<boolean> = of(false);
-    constructor(private cartService: CartService, private unicornsDispatchers: UnicornsDispatchers) {}
+    constructor(
+        private cartService: CartService,
+        private unicornsDispatchers: UnicornsDispatchers,
+        private cartDispatchers: CartDispatchers,
+        private cartSelectors: CartSelectors,
+    ) {}
 
     ngOnInit(): void {
-        if (this.unicorn && this.unicorn) {
+        if (this.unicorn) {
             this.unicornWithAge = { ...this.unicorn, age: this.currentYear - this.unicorn.birthyear };
-            this.isFavorite$ = this.cartService.isInCart(this.unicorn);
+            this.isFavorite$ = this.cartSelectors.isInCart$(this.unicorn.id);
         }
     }
 
@@ -40,7 +47,7 @@ export class UnicornCardComponent implements OnInit {
         if (!this.unicorn) {
             return;
         }
-        this.cartService.toggle(this.unicorn);
+        this.cartDispatchers.toggleUnicornFromCart(this.unicorn.id);
     }
 
     public remove() {
