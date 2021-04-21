@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Unicorn } from './../shared/models/unicorn.model';
-import { UnicornsService, UnicornWithCapacitiesLabels } from './../shared/services/unicorns.service';
+import { UnicornWithCapacitiesLabels } from './../shared/services/unicorns.service';
+import { UnicornsDispatchers } from './../store/dispatchers/unicorns.dispatchers';
+import { UnicornsSelectors } from './../store/selectors/unicorns.selectors';
 
 @Component({
     selector: 'app-unicorn-list',
@@ -9,15 +11,12 @@ import { UnicornsService, UnicornWithCapacitiesLabels } from './../shared/servic
 })
 export class UnicornListComponent {
     public unicorns: UnicornWithCapacitiesLabels[] = [];
-    public count = 0;
-    constructor(unicornsService: UnicornsService) {
-        unicornsService.getAllWithCapacitiesLabels().subscribe(unicorns => {
-            this.unicorns = unicorns;
-            this.count = this.unicorns.length;
-        });
+    public unicorns$ = this.unicornsSelectors.unicorns$;
+    constructor(private unicornsDispatchers: UnicornsDispatchers, private unicornsSelectors: UnicornsSelectors) {
+        this.unicornsDispatchers.getUnicorns();
     }
     public removeUnicorn(unicornToRemove: Unicorn) {
-        this.unicorns = this.unicorns.filter(({ id }) => id !== unicornToRemove.id);
+        this.unicornsDispatchers.deleteUnicorn(unicornToRemove);
     }
     public trackByUnicorn(u: Unicorn) {
         return u.id;

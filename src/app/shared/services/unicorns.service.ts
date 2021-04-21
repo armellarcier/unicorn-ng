@@ -59,6 +59,10 @@ export class UnicornsService {
         );
     }
 
+    public delete(id: number) {
+        return this.http.delete<Unicorn>(`${environment.apiUrl}/unicorns/${id}`).pipe(catchError(err => of(null)));
+    }
+
     public getAllWithCapacitiesLabels(): Observable<UnicornWithCapacitiesLabels[]> {
         const unicorns$ = this.getAll().pipe(share());
         const capacities$ = unicorns$.pipe(

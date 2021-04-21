@@ -13,8 +13,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
@@ -24,7 +22,7 @@ import { LoggerInterceptor } from './shared/interceptors/logger.interceptor';
 import { NavComponent } from './shared/nav/nav.component';
 import { AgeFromBirthYearPipe } from './shared/pipes/age-from-birth-year.pipe';
 import { ShowUnicornComponent } from './show-unicorn/show-unicorn.component';
-import { AppStoreModule } from './store/app-store/app-store.module';
+import { AppStoreModule } from './store/app-store.module';
 import { UnicornCardComponent } from './unicorn-card/unicorn-card.component';
 import { UnicornListComponent } from './unicorn-list/unicorn-list.component';
 
@@ -59,8 +57,6 @@ const httpInterceptorProviders = [{ provide: HTTP_INTERCEPTORS, useClass: Logger
         MatInputModule,
         ReactiveFormsModule,
         MatSnackBarModule,
-        StoreModule.forRoot({}, {}), // laisser vide, à configurer dans app-store.module
-        EffectsModule.forRoot([]),
         AppStoreModule,
     ],
     providers: [...httpInterceptorProviders],
